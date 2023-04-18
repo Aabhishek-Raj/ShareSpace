@@ -17,7 +17,7 @@ app.use(
     cookieSession({    
         signed: false,
         secure: process.env.NODE_ENV !== 'test'
-    })
+    })  
 )
 //if cookie has to run above to set req.session, only after cookie
 app.use(currentUser)

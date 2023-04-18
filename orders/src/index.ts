@@ -3,6 +3,9 @@ import { app } from './app'
 import { natsWrapper } from './natsWrapper'
 import { TokenCreatedListener } from './events/listeners/tokenCreatedListener'
 import { TokenUpdatedListener } from './events/listeners/tokenUpdatedListener'
+import { ExpirationCompleteListener } from './events/listeners/expirationCompleteListener'
+import { PaymentCreatedListener } from './events/listeners/paymentCreatedListener'
+ 
 
 const start = async () => {
 
@@ -33,6 +36,8 @@ const start = async () => {
 
         new TokenCreatedListener(natsWrapper.client).listen()
         new TokenUpdatedListener(natsWrapper.client).listen()
+        new ExpirationCompleteListener(natsWrapper.client).listen()
+        new PaymentCreatedListener(natsWrapper.client).listen()
 
         await mongoose.connect(process.env.MONGO_URI)
         console.log('Connected to MongoDb')

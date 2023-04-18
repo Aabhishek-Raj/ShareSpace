@@ -5,7 +5,9 @@ const router = express.Router()
 
 router.get('/api/tokens', async (req: Request, res: Response) => {
     
-    const tokens = await Token.find({})
+    const tokens = await Token.find({
+        orderId: undefined
+    })
 
     res.send(tokens)     
 })

@@ -13,7 +13,7 @@ export class TokenUpdatedListener extends Listener<TokenUpdatedEvent>  {
 
         if(!token) {
             throw new Error('Token not found')
-        }
+        }  
 
         const { title, price } = data
         token.set({ title, price})

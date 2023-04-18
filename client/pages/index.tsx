@@ -1,18 +1,44 @@
-import buildClient from '../api/buildClient'
+import Link from "next/link"
 
-const LandingPage = ({ currentUser }) => {
+const LandingPage = ({ currentUser, tokens }) => {
 
-  const content = currentUser ? <h1>You are Signed in.</h1>: <h1>You are Not Signed in..</h1>
+  const tokenList = tokens.map(token => {
+    return (
+      <tr key={token.id}>
+        <td>{token.title}</td>
+        <td>{token.price}</td>
+        <td>
+          <Link href="tokens/[tokenId]" as={`tokens/${token.id}`}>View</Link>
+        </td>
+      </tr>
+    )
+  })
+
+  const content =
+    <div>
+      <h1>NFTs</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tokenList}
+        </tbody>
+      </table>
+    </div>
 
   return content
 }
 
-LandingPage.getInitialProps = async (context) => {
+LandingPage.getInitialProps = async (context, client, currentUser) => {
 
-  const client = buildClient(context)
-  const { data } = await client.get('/api/users/currentuser')
+  const { data } = await client.get('/api/tokens')
 
-  return data 
+  return { tokens: data }
 }
 
 export default LandingPage
