@@ -16,7 +16,7 @@ const LandingPage = ({ currentUser, tokens }) => {
 
   const content =
     <div>
-      <h1>NFTs</h1>
+      <h1>NFT'S</h1>
       <table className="table">
         <thead>
           <tr>
