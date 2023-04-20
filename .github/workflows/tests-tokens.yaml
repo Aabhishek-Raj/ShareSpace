@@ -1,7 +1,9 @@
 name: tests-tokens
 
 on: 
-  pull_request
+  pull_request:
+    paths:
+      - 'tokens/**'
   
 jobs: 
   build:
