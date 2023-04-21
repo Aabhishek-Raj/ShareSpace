@@ -8,6 +8,7 @@ import { PaymentCreatedListener } from './events/listeners/paymentCreatedListene
  
 
 const start = async () => {
+    console.log('order Starting..')
 
     if (!process.env.JWT_KEY) {
         throw new Error('JWT_KEY must be defined')
